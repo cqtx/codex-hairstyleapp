@@ -1,0 +1,53 @@
+<div class="page">
+  <header class="hero">
+    <h1>Nano Banana Hairstyle Lab</h1>
+    <p>Blend your portrait with a reference hairstyle using Google's Nano Banana API.</p>
+  </header>
+
+  <section class="card-grid">
+    <article class="card">
+      <h2>Your portrait</h2>
+      <p class="hint">Use a clear, front-facing photo with good lighting.</p>
+      <div class="preview" [class.preview--has-image]="!!userPreview()">
+        <img *ngIf="userPreview()" [src]="userPreview()" alt="Your photo preview" />
+        <span *ngIf="!userPreview()">No image selected yet</span>
+      </div>
+      <label class="upload-button">
+        <input type="file" accept="image/*" (change)="onFileSelected('user', $event)" />
+        Choose portrait
+      </label>
+      <button class="link-button" type="button" *ngIf="userPreview()" (click)="clear('user')">Clear photo</button>
+    </article>
+
+    <article class="card">
+      <h2>Reference hairstyle</h2>
+      <p class="hint">Pick a single-person photo that shows the hairstyle you like.</p>
+      <div class="preview" [class.preview--has-image]="!!referencePreview()">
+        <img *ngIf="referencePreview()" [src]="referencePreview()" alt="Reference hairstyle preview" />
+        <span *ngIf="!referencePreview()">No image selected yet</span>
+      </div>
+      <label class="upload-button">
+        <input type="file" accept="image/*" (change)="onFileSelected('reference', $event)" />
+        Choose hairstyle
+      </label>
+      <button class="link-button" type="button" *ngIf="referencePreview()" (click)="clear('reference')">Clear reference</button>
+    </article>
+
+    <article class="card result-card">
+      <h2>Result</h2>
+      <p class="hint">Generated hairstyle preview. It stays put so you can iterate quickly.</p>
+      <div class="result-stage" [class.result-stage--loading]="isLoading()">
+        <div class="spinner" *ngIf="isLoading()" role="status" aria-label="Processing hairstyle"></div>
+        <img *ngIf="resultImage() && !isLoading()" [src]="resultImage()" alt="Generated hairstyle" />
+        <span *ngIf="!resultImage() && !isLoading()" class="placeholder">Your blended hairstyle will appear here.</span>
+      </div>
+      <button class="secondary" type="button" (click)="downloadResult()" [disabled]="!resultImage() || isLoading()">Download image</button>
+    </article>
+  </section>
+
+  <div class="actions">
+    <button class="primary" type="button" (click)="upload()" [disabled]="cannotSubmit()">Generate hairstyle</button>
+  </div>
+
+  <p class="error" *ngIf="errorMessage()" aria-live="assertive">{{ errorMessage() }}</p>
+</div>

@@ -1,0 +1,252 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #f5f0ff 0%, #f7f9ff 30%, #ffffff 70%);
+  color: #1f1f24;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.hero {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  h1 {
+    margin: 0;
+    font-size: clamp(2.2rem, 6vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  p {
+    margin: 0 auto;
+    max-width: 580px;
+    color: #55566c;
+    font-size: 1.05rem;
+  }
+}
+
+.card-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 18px;
+  padding: 1.75rem;
+  box-shadow: 0 12px 35px rgba(48, 46, 77, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  .hint {
+    margin: 0;
+    color: #6b6c80;
+    font-size: 0.95rem;
+  }
+}
+
+.preview {
+  position: relative;
+  border: 2px dashed rgba(99, 101, 136, 0.3);
+  border-radius: 16px;
+  aspect-ratio: 3 / 4;
+  display: grid;
+  place-items: center;
+  color: #9293ac;
+  font-size: 0.95rem;
+  overflow: hidden;
+  background: rgba(248, 249, 255, 0.6);
+
+  &.preview--has-image {
+    border-style: solid;
+    border-color: rgba(106, 80, 255, 0.35);
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.result-card {
+  .result-stage {
+    position: relative;
+    border-radius: 16px;
+    border: 2px solid rgba(106, 80, 255, 0.25);
+    aspect-ratio: 3 / 4;
+    display: grid;
+    place-items: center;
+    background: rgba(248, 249, 255, 0.7);
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background-color: #f7f8ff;
+    }
+
+    .placeholder {
+      color: #747596;
+      text-align: center;
+      padding: 0 1rem;
+      font-size: 0.95rem;
+    }
+  }
+
+  .result-stage--loading {
+    background: rgba(246, 244, 255, 0.9);
+  }
+}
+
+.upload-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: linear-gradient(135deg, #6846ff 0%, #a148ff 100%);
+  color: #ffffff;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 20px rgba(97, 72, 255, 0.35);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.link-button {
+  background: transparent;
+  border: none;
+  color: #6b6c80;
+  text-decoration: underline;
+  font-size: 0.9rem;
+  cursor: pointer;
+  align-self: flex-start;
+
+  &:hover {
+    color: #4c4d63;
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+}
+
+.primary,
+.secondary {
+  border: none;
+  border-radius: 999px;
+  padding: 0.85rem 1.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.primary {
+  background: linear-gradient(135deg, #ff8a80 0%, #ff6ec7 50%, #7a5fff 100%);
+  color: white;
+  box-shadow: 0 12px 28px rgba(255, 110, 199, 0.3);
+
+  &:hover:not(:disabled) {
+    transform: translateY(-1px);
+  }
+}
+
+.secondary {
+  background: #f3f4ff;
+  color: #4f4f65;
+
+  &:hover:not(:disabled) {
+    background: #e4e6ff;
+  }
+}
+
+.primary:disabled,
+.secondary:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+  box-shadow: none;
+}
+
+.error {
+  margin: 0 auto;
+  max-width: 520px;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  background: rgba(255, 87, 136, 0.1);
+  color: #c62828;
+  text-align: center;
+}
+
+.spinner {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 6px solid rgba(122, 95, 255, 0.25);
+  border-top-color: #7a5fff;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: 2.5rem 1rem 3rem;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  .actions {
+    order: 3;
+  }
+}

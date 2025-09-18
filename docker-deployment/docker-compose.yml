@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: ..
+      dockerfile: docker-deployment/backend.Dockerfile
+    environment:
+      GOOGLE_GEMINI_API_KEY: ${GOOGLE_GEMINI_API_KEY:?Set GOOGLE_GEMINI_API_KEY in your environment}
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build:
+      context: ..
+      dockerfile: docker-deployment/frontend.Dockerfile
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"

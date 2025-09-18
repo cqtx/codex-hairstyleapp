@@ -1,0 +1,23 @@
+# Python virtual environments
+source/backend/.venv/
+
+# Python cache
+**/__pycache__/
+*.py[cod]
+
+# Environment and secrets
+.env
+.env.*
+
+# Editor/workspace junk
+*.log
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Angular build artifacts (handled inside frontend but duplicated for safety)
+source/frontend/dist/
+source/frontend/tmp/
+source/frontend/out-tsc/
+source/frontend/.angular/
